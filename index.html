@@ -16,39 +16,45 @@
       <div class="container">
          <div class="cart">
             <div class="col-md-12 col-lg-10 mx-auto">
+
+               <!--1st Item-->
                <div class="cart-item">
                   <div class="row">
-                     <div class="col-md-7 center-item">
+                     <div class="col-md-6 center-item">
                         <img src="images/product-1.png" alt="">
                         <h5>iPhone 11 128GB Black</h5>
                      </div>
-
-                     <div class="col-md-5 center-item">
+                      <!--Plus Minus 1-->
+                     <div class="col-md-6 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                           <label> <button id="minus1"class="btn btn-default"><i class="fas fa-minus"></i></button> </label>
+                           <label> <input id="input1" type="text" class="form-control text-center" value="1"> </label> 
+                           <label> <button id="plus1" class="btn btn-default"><i class="fas fa-plus"></i></button> </label>
+                                                                         
                         </div>
-                        <h5>$1219</h5>
+                        <h5 >$ <span id="price1">1219</span> </h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
                </div>
 
+                <!--2nd Item-->
                <div class="cart-item">
                   <div class="row">
-                     <div class="col-md-7 center-item mx-auto">
+                     <div class="col-md-6 center-item mx-auto">
                         <img src="images/product-2.png" alt="">
                         <h5>iPhone 11 Silicone Case - Black</h5>
                      </div>
-                     <div class="col-md-5 center-item">
+                     <div class="col-md-6 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                           <label><button id="minus2" class="btn btn-default"><i class="fas fa-minus"></i></button></label>
+                           <label><input id="input2" type="text" class="form-control text-center" value="1"></label>
+                           <label><button id="plus2" class="btn btn-default"><i class="fas fa-plus"></i></button></label>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="price2">59</span> </h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,9 +70,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
-                        <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="subtotal">1,278</span> </h5>
+                        <h5>$<span id="tax">0</span></h5>
+                        <h5>$<span id="total">1,278</span></h5>
                      </div>
                   </div>
                </div>
@@ -77,6 +83,79 @@
          </div>
       </div>
    </section>
+
+   <script>
+
+      //Plus button 1
+      //plus button ke dhorlam
+      const plusBtn = document.getElementById("plus1");
+      //plus button e event handler add 
+      plusBtn.addEventListener("click",function(){
+         //input field er value read
+         const plus1_ip= document.getElementById("input1").value;
+         //value ke string theke int banano
+         const plus1_ip_num= parseInt(plus1_ip);
+         // value ke 1 barabe
+         const plus1_ip_val = plus1_ip_num + 1;
+         // input field er value set kora
+         document.getElementById("input1").value = plus1_ip_val;
+         const price1_increase = 1219 * plus1_ip_val;
+         document.getElementById("price1").innerText = price1_increase;
+         })
+         //Plus button 2
+         const plusBtn2 = document.getElementById("plus2");
+         plusBtn2.addEventListener("click",function(){
+            const plus2_ip_val = plus("input2"); //function call
+            const price2_increase = 59 * plus2_ip_val;
+            document.getElementById("price2").innerText = price2_increase;
+         })
+    
+         //Minus Button1
+         const minusBtn1 = document.getElementById("minus1");
+         minusBtn1.addEventListener("click",function(){
+            const minus1_ip_val = minus("input1"); //function call
+            const price1 = document.getElementById("price1").innerText; 
+            const price1_num = parseInt(price1);
+            if(price1_num > 1219){
+               const price1_decrease = price1_num - 1219;
+               document.getElementById("price1").innerText = price1_decrease;   
+            }              
+         })
+
+         //Minus Button2
+         const minusBtn2 = document.getElementById("minus2");
+         minusBtn2.addEventListener("click",function(){
+            const minus2_ip_val = minus("input2"); //function call
+            const price2 = document.getElementById("price2").innerText; 
+            const price2_num = parseInt(price2);
+            if(price2_num > 59){
+               const price2_decrease = price2_num - 59;
+               document.getElementById("price2").innerText = price2_decrease;   
+            }    
+         })
+
+
+         function plus(id){
+            const plus_input= document.getElementById(id).value;      
+            const plus_ip_num = parseInt(plus_input);   
+            const plus_ip_val = plus_ip_num + 1;    
+            document.getElementById(id).value = plus_ip_val;
+            return plus_ip_val;
+         }
+
+         function minus(id){
+            const minus_input= document.getElementById(id).value;      
+            const minus_ip_num = parseInt(minus_input);   
+            if(minus_ip_num > 1){
+               const minus_ip_val = minus_ip_num - 1;    
+               document.getElementById(id).value = minus_ip_val;
+               return minus_ip_val;
+            }
+         }
+         
+   </script>
+
+
 </body>
 
 </html>
